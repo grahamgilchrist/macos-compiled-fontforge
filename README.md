@@ -4,7 +4,7 @@ A built dump of a working fontforge/ttfautohint brew install that works with gru
 Fontforge has problems working with grunt-webfont on some systems due to incompatible newer versions in the brew repository. This is a working compiled set of brew Cellar folders which can be copied into your brew folder. These versions were compiled on Mac OS X mavericks on an intel iMac.
 
 To install:
-* checkout this repo ' git clone repo-url macos-compiled-fontforge`
+* checkout this repo `git clone repo-url macos-compiled-fontforge`
 * Install fontforge and ttfauthint via brew to establish folders in the brew Cellar
     * `brew install fontforge ttfautohint`
 * Move the folders from this repo over the installed versions
