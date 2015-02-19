@@ -1,7 +1,7 @@
 # macos-compiled-fontforge
 A built dump of a working fontforge/ttfautohint brew install that works with grunt-webfont
 
-Fontforge has problems working with grunt-webfont on some systems due to incompatible newer versions in the brew repository. This is a working compiled set of brew Cellar folders which can be copied into your brew folder.
+Fontforge has problems working with grunt-webfont on some systems due to incompatible newer versions in the brew repository. This is a working compiled set of brew Cellar folders which can be copied into your brew folder. These versions were compiled on Mac OS X mavericks on an intel iMac.
 
 To install:
 * checkout this repo ' git clone repo-url macos-compiled-fontforge`
