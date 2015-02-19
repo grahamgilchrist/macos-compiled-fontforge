@@ -1,0 +1,6 @@
+prefix=/usr/local/Cellar/fontforge/20120731
+exec_prefix=${prefix}
+
+Name: FontForge
+Description: Outline font editor.
+Version: 20120731-b

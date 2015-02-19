@@ -1,0 +1,132 @@
+
+important improvements
+----------------------
+
+add features to the GUI
+  -> direct control over `actions'
+  -> preview similar to ftgrid
+  -> autocompletion of file names with tab key
+
+handle OT features
+  -> use HarfBuzz as soon it provides the necessary APIs
+
+control `gasp' table; Adam Twardoch suggest the following:
+
+  1. Calculate "gaspstem", i.e. the most common thickness of horizontal
+     stems (y direction distances) for lowercase Latin letters.
+  2. If gaspstem <= 0.03 * upm, apply gasp symmetric smoothing across the
+     entire range (rangeMaxPPEM 0xFFFF, value 15)
+  3. Else, calculate gaspthreshold as follows:
+       ceil(1.33 * upm / gaspstem) - 1
+  4. Apply no symmetric smoothing up to the gaspthreshold ppem (rangeMaxPPEM
+     gaspthreshold, value 7), and apply symmetric smoothing above.
+
+  In addition, ttfautohint should provide a commandline parameter that
+  allows the user to override the automatic logic.  If that parameter = 0,
+  then gasp value 15 should be applied across the entire range.  If the
+  parameter > 0, then up to that parameter value the gasp value 7 should be
+  applied, and gasp value 15 should be applied above.
+
+create a separate blue zone class for `i' and `j':
+  . if the values differ more than a given threshold, handle them
+    separately
+  . otherwise, unify them with `f' and friends.
+
+control the characters used for blue zones
+  -> non-latin scripts
+
+user-defined blue zones?
+  -> old-style digits
+
+control the width of blue zones
+
+add control over character ranges which define a script; in particular, add
+  support for the PUA
+
+handle normal and bold fonts differently; cf. Infinality patches;
+  this should help avoid filling of bowls (like in `e') for bold shapes.
+
+help font families harmonize well so that e.g. x height and stem width
+  change synchronously
+
+control the minimum stem width
+
+try to `embolden' fonts at small sizes to avoid drop-outs; cf. Infinality
+  patches
+
+make switching between smooth and strong hinting dependent on user-defined
+  ranges
+
+improve `pre-hinting' by making the used PPEM value configurable
+
+allow hinting of single glyphs, using a config file which holds the global
+  settings
+
+better handling of `incomplete' fonts (this is, fonts which lack the minimum
+  set of glyphs necessary to determine the blue zones)
+
+
+minor improvements
+------------------
+
+reject fonts which are `hopeless' (for example, `Lipstick')
+
+correctly set `lowestRecPPEM' field in `head'
+
+control dropout mode
+
+apply hinting in x direction also?
+  -> warper: shifting with and without scaling
+  -> `standard' autofit hinting
+
+add a config and/or command file for batch handling
+
+warn against overwrite of output file in TTY mode?
+
+reduce output size of option -p:
+  1. compare outline rendered at EM value with unhinted outline
+  2. pre-hint only if 1. differs more than given threshold (default 0.5%?)
+
+make it possible to hint fonts which aren't alphabetic at all, for example,
+  icons; to do so, provide means to skip the global feature analysis
+
+better control -i output
+
+allow processing of multiple files by using globs as in the Midnight
+  Commander?
+
+allow composite fonts already processed by ttfautohint to be processed
+  again (due to option `hint-with-components' this isn't urgent)
+
+make ttfautohint remember options:
+  1. collect md5 checksums in a `~/.ttfautohint_history' file so that fonts
+     can be re-processed easily, using the same parameters
+  2. if fonts already processed by ttfautohint can be re-processed (which
+     isn't possible yet), parse the `version' string for parameters
+
+implement (sort of) the opposite of -x, this is, decrease the x height
+
+
+later enhancements
+------------------
+
+add CJK autohinting module
+add Hebrew autohinting module
+
+instead of emitting bytecode, write the hints as a VTT or FontLab script
+
+Windows/Mac installer
+
+
+various
+-------
+
+testing with Windows and Apple font checkers
+
+man page for ttfautohint library
+
+install library
+
+add help2man script so that parallel builds always work
+
+EOF
